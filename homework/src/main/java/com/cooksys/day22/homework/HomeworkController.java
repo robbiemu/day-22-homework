@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cooksys.day22.homework.model.City;
 import com.cooksys.day22.homework.model.State;
 import com.cooksys.day22.homework.model.Student;
-import com.cooksys.day22.homework.springview.StudentView;
+import com.cooksys.day22.homework.springview.StudentCityView;
+import com.cooksys.day22.homework.springview.StudentStateView;
 import com.cooksys.day22.homework.tx.DBTXResponse;
 
 @RestController
@@ -34,17 +35,17 @@ public class HomeworkController {
 	}
 
 	@RequestMapping("students")
-	public List<StudentView> getStudents() {
+	public List<Student> getStudents() {
 		return cheater.readStudents();
 	}
 	
 	@RequestMapping("students/city/{name}")
-	public DBTXResponse<StudentView> getStudentsByCity(@PathVariable String name) {
+	public DBTXResponse<StudentStateView> getStudentsByCity(@PathVariable String name) {
 		return cheater.readStudentsByCity(name);
 	}
 
 	@RequestMapping("students/state/{name}")
-	public DBTXResponse<StudentView> getStudentsByState(@PathVariable String name) {
+	public DBTXResponse<StudentCityView> getStudentsByState(@PathVariable String name) {
 		return cheater.readStudentsByState(name);
 	}
 	

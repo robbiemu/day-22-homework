@@ -2,14 +2,14 @@ package com.cooksys.day22.homework.springview;
 
 import com.cooksys.day22.homework.model.Student;
 
-public class StudentView {
+public class StudentCityView {
 	Long id;
 	String name;
 	String city;
 	
-	public StudentView () { }
+	public StudentCityView () { }
 	
-	public StudentView (Student student) {
+	public StudentCityView (Student student) {
 		this.name = student.getName();
 		this.id = student.getId();
 		this.city = student.getCity().getName();

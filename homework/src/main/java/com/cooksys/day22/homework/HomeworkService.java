@@ -12,7 +12,8 @@ import com.cooksys.day22.homework.model.Student;
 import com.cooksys.day22.homework.repository.CityRepository;
 import com.cooksys.day22.homework.repository.StateRepository;
 import com.cooksys.day22.homework.repository.StudentRepository;
-import com.cooksys.day22.homework.springview.StudentView;
+import com.cooksys.day22.homework.springview.StudentCityView;
+import com.cooksys.day22.homework.springview.StudentStateView;
 import com.cooksys.day22.homework.tx.DBTXResponse;
 
 @Service
@@ -28,40 +29,31 @@ public class HomeworkService {
 	StudentRepository studentRepository;
 
 	
-	public List<StudentView> readStudents() {
-		List<Student> students = studentRepository.findAll();
-		if(students == null) {
-			return null;
-		}
-
-		List<StudentView> l = new ArrayList<>();
-		for(Student s: students) {
-			l.add(new StudentView(s));
-		}
-		return l;
+	public List<Student> readStudents() {
+		return studentRepository.findAll();
 	}
 
 	public Student readStudent(Long id) {
 		return studentRepository.findOne(id);
 	}
 
-	public DBTXResponse<StudentView> readStudentsByCity(String name) {
+	public DBTXResponse<StudentStateView> readStudentsByCity(String name) {
 		List<Student> students = studentRepository.findByCity(cityRepository.findOneByName(name));
 		if(students == null) {
 			return null;
 		}
 		
-		List<StudentView> l = new ArrayList<>();
+		List<StudentStateView> l = new ArrayList<>();
 		for(Student s: students) {
-			l.add(new StudentView(s));
+			l.add(new StudentStateView(s));
 		}
-		DBTXResponse<StudentView> r = new DBTXResponse<>(name);
+		DBTXResponse<StudentStateView> r = new DBTXResponse<>(name);
 		r.setElements(l);
 
 		return r;
 	}
 	
-	public DBTXResponse<StudentView> readStudentsByState(String name) {
+	public DBTXResponse<StudentCityView> readStudentsByState(String name) {
 //		List<Student> students = studentRepository.findByCityIn(
 //																cityRepository.findByState(
 //																		stateRepository.findOneByName(name)));
@@ -71,11 +63,11 @@ public class HomeworkService {
 			return null;
 		}
 		
-		List<StudentView> l = new ArrayList<>();
+		List<StudentCityView> l = new ArrayList<>();
 		for(Student s: students) {
-			l.add(new StudentView(s));
+			l.add(new StudentCityView(s));
 		}
-		DBTXResponse<StudentView> r = new DBTXResponse<>(name);
+		DBTXResponse<StudentCityView> r = new DBTXResponse<>(name);
 		r.setElements(l);
 
 		return r;
