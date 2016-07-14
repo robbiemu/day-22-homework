@@ -43,14 +43,14 @@ public class HomeworkController {
 		return cheater.readStudentsByCity(city);
 	}
 
-	@RequestMapping(value="students/city/{city}", method=RequestMethod.POST)
-	public Student postCityOfStudent(@PathVariable Long city) {
-		return cheater.createCityofStudent(city);
+	@RequestMapping(value="student/{pk}/city/{cpk}", method=RequestMethod.POST)
+	public Student postCityOfStudent(@PathVariable Long pk, @PathVariable Long cpk) {
+		return cheater.createCityofStudent(pk, cpk);
 	}
 
-	@RequestMapping(value="students/state/{state}", method=RequestMethod.POST)
-	public Student postStateOfStudent(@PathVariable Long state) {
-		return cheater.createStateofStudent(state);
+	@RequestMapping(value="student/{pk}/state/{spk}", method=RequestMethod.POST)
+	public Student postStateOfStudent(@PathVariable Long pk, @PathVariable Long spk) {
+		return cheater.createStateofStudent(pk, spk);
 	}
 
 	

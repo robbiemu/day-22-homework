@@ -92,12 +92,26 @@ public class HomeworkService {
 		return stateRepository.findAll();
 	}
 
-	public Student createCityofStudent(Long city_id) {
-		return (cityRepository.exists(city_id))? studentRepository.saveCity(cityRepository.findOne(city_id)): null;
+	public Student createCityofStudent(Long student_id, Long city_id) {
+		Student s = studentRepository.findOne(student_id);
+		City c = cityRepository.findOne(city_id);
+
+		s.setCity(c);
+	
+		studentRepository.save(s);
+		
+		return s;
 	}
 
-	public Student createStateofStudent(Long state_id) {
-		return (stateRepository.exists(state_id))? studentRepository.saveState(stateRepository.findOne(state_id)): null;
+	public Student createStateofStudent(Long student_id, Long state_id) {
+		Student student = studentRepository.findOne(student_id);
+		State s = stateRepository.findOne(state_id);
+
+		student.setState(s);
+	
+		studentRepository.save(student);
+		
+		return student;
 	}
 	
 }
