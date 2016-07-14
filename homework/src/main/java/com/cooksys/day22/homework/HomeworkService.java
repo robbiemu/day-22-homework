@@ -44,8 +44,8 @@ public class HomeworkService {
 		return studentRepository.findOne(id);
 	}
 
-	public DBTXResponse<StudentView> readStudentsByCity(String city) {
-		List<Student> students = studentRepository.findByCity(city);
+	public DBTXResponse<StudentView> readStudentsByCity(String name) {
+		List<Student> students = studentRepository.findByCity(cityRepository.findOneByName(name));
 		if(students == null) {
 			return null;
 		}
@@ -54,7 +54,7 @@ public class HomeworkService {
 		for(Student s: students) {
 			l.add(new StudentView(s));
 		}
-		DBTXResponse<StudentView> r = new DBTXResponse<>(city);
+		DBTXResponse<StudentView> r = new DBTXResponse<>(name);
 		r.setElements(l);
 
 		return r;

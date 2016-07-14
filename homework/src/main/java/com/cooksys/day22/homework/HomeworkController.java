@@ -38,9 +38,9 @@ public class HomeworkController {
 		return cheater.readStudents();
 	}
 	
-	@RequestMapping("students/city/{city}")
-	public DBTXResponse<StudentView> getStudents(@PathVariable String city) {
-		return cheater.readStudentsByCity(city);
+	@RequestMapping("students/city/{name}")
+	public DBTXResponse<StudentView> getStudents(@PathVariable String name) {
+		return cheater.readStudentsByCity(name);
 	}
 
 	@RequestMapping(value="student/{pk}/city/{cpk}", method=RequestMethod.POST)
