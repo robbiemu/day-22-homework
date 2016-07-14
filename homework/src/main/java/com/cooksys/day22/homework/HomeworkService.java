@@ -62,9 +62,11 @@ public class HomeworkService {
 	}
 	
 	public DBTXResponse<StudentView> readStudentsByState(String name) {
-		List<Student> students = studentRepository.findByCityIn(
-																cityRepository.findByState(
-																		stateRepository.findOneByName(name)));
+//		List<Student> students = studentRepository.findByCityIn(
+//																cityRepository.findByState(
+//																		stateRepository.findOneByName(name)));
+		List<Student> students = studentRepository.findByCityStateName(name);
+		
 		if(students == null) {
 			return null;
 		}
