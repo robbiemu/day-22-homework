@@ -9,5 +9,9 @@ orig:
 updates:
 
 * ManyToOne city and state entities
-* MappedSuperClass base model
+* MappedSuperClass base model with:
+	* primary key
+	* created timestamp (automatic, too!)
+	* last updated timestamp (automatic, too!)
+	* table version column for denormalized records 
 * cruddy api for each entity in addition to the required gets
