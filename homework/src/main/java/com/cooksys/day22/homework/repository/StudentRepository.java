@@ -9,6 +9,5 @@ import com.cooksys.day22.homework.model.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 	List<Student> findByCity(City city);
-//	List<Student> findByCityIn(List<City> cities);
 	List<Student> findByCityStateName(String name);
 }
