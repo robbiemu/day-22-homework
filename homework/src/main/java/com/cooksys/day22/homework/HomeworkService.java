@@ -19,13 +19,14 @@ import com.cooksys.day22.homework.tx.DBTXResponse;
 public class HomeworkService {
 	
 	@Autowired
-	StudentRepository studentRepository;
-
-	@Autowired
 	CityRepository cityRepository;
 
 	@Autowired
 	StateRepository stateRepository;
+
+	@Autowired
+	StudentRepository studentRepository;
+
 	
 	public List<StudentView> readStudents() {
 		List<Student> students = studentRepository.findAll();
@@ -59,6 +60,24 @@ public class HomeworkService {
 
 		return r;
 	}
+	
+	public DBTXResponse<StudentView> readStudentsByState(String name) {
+		List<Student> students = studentRepository.findByCityIn(
+																cityRepository.findByState(
+																		stateRepository.findOneByName(name)));
+		if(students == null) {
+			return null;
+		}
+		
+		List<StudentView> l = new ArrayList<>();
+		for(Student s: students) {
+			l.add(new StudentView(s));
+		}
+		DBTXResponse<StudentView> r = new DBTXResponse<>(name);
+		r.setElements(l);
+
+		return r;
+	} 
 
 	public Student createStudent(Student student) {
 		studentRepository.save(student);
@@ -101,17 +120,6 @@ public class HomeworkService {
 		studentRepository.save(s);
 		
 		return s;
-	}
-
-	public Student createStateofStudent(Long student_id, Long state_id) {
-		Student student = studentRepository.findOne(student_id);
-		State s = stateRepository.findOne(state_id);
-
-		student.setState(s);
-	
-		studentRepository.save(student);
-		
-		return student;
 	}
 	
 }

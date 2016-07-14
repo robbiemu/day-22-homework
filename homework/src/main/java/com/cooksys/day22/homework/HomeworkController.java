@@ -39,20 +39,19 @@ public class HomeworkController {
 	}
 	
 	@RequestMapping("students/city/{name}")
-	public DBTXResponse<StudentView> getStudents(@PathVariable String name) {
+	public DBTXResponse<StudentView> getStudentsByCity(@PathVariable String name) {
 		return cheater.readStudentsByCity(name);
 	}
 
+	@RequestMapping("students/state/{name}")
+	public DBTXResponse<StudentView> getStudentsByState(@PathVariable String name) {
+		return cheater.readStudentsByState(name);
+	}
+	
 	@RequestMapping(value="student/{pk}/city/{cpk}", method=RequestMethod.POST)
 	public Student postCityOfStudent(@PathVariable Long pk, @PathVariable Long cpk) {
 		return cheater.createCityofStudent(pk, cpk);
 	}
-
-	@RequestMapping(value="student/{pk}/state/{spk}", method=RequestMethod.POST)
-	public Student postStateOfStudent(@PathVariable Long pk, @PathVariable Long spk) {
-		return cheater.createStateofStudent(pk, spk);
-	}
-
 	
 	@RequestMapping(value="city", method=RequestMethod.POST)
 	public City postCity(@RequestBody City city) {

@@ -10,7 +10,6 @@ import javax.persistence.Table;
 public class Student extends Model {
 	@Column String name;
 	@ManyToOne City city;
-	@ManyToOne State state;
 	
 	public Student () { }
 	
@@ -27,13 +26,5 @@ public class Student extends Model {
 	public void setCity(City city) {
 		this.city = city;
 	}
-
-	public State getState() {
-		return state;
-	}
-	public void setState(State state) {
-		this.state = state;
-	}
-
 	
 }
